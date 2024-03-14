@@ -10,6 +10,10 @@ const config = {
   ],
   prefix: "",
   theme: {
+    aspectRatio: {
+      "2/1": "2 / 1",
+      "4/3": "4 / 3",
+    },
     container: {
       center: true,
       padding: {

@@ -1,15 +1,15 @@
-import BestSellers from "@/components/bestSellers/BestSellers";
+import BestSellers from "@/components/bestSellers/bestSellers";
+import Footer from "@/components/footer/Footer";
 import Hero from "@/components/hero/Hero";
 import Navbar from "@/components/navbar/Navbar";
-import Image from "next/image";
 
-export default function Home() {
+export default async function Home() {
   return (
     <main>
       <Navbar />
       <Hero />
       <BestSellers />
-      <div className="footer h-16 w-full"></div>
+      <Footer />
     </main>
   );
 }

@@ -1,3 +1,4 @@
+import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
 
 export default function Layout({
@@ -6,12 +7,10 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
+    <div>
       <Navbar />
       {children}
-      <div className="footer w-full h-32 flex items-center justify-center bg-foreground">
-        <h1 className="text-background">Footer</h1>
-      </div>
-    </>
+      <Footer />
+    </div>
   );
 }

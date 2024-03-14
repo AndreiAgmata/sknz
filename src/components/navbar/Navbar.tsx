@@ -10,12 +10,18 @@ function Navbar() {
         className="container mx-auto w-full h-16 flex items-center justify-between rounded-b-xl"
         style={{ backgroundColor: "#0C0C0C" }}
       >
-        <Link href={"/"}>
-          <h1 className="text-2xl text-neutral-50 font-bold">SKNZ</h1>
+        <Link href={"/"} className="flex flex-col gap-0">
+          <h1 className="text-2xl text-neutral-50 font-bold mb-0 lh">SK</h1>
+          <h1
+            className="text-2xl text-neutral-50 font-bold mb-0"
+            style={{ marginTop: "-15px" }}
+          >
+            NZ
+          </h1>
         </Link>
 
         <div className="public-links flex gap-5">
-          <Link href={"/designs"} className="text-neutral-100">
+          <Link href={"/products"} className="text-neutral-100">
             Shop
           </Link>
           <Link href={""} className="text-neutral-100">

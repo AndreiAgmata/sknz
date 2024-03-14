@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import ProductsData from "../../../../public/data/data.json";
 import ItemCard from "@/components/itemCard/ItemCard";
@@ -20,10 +19,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useRouter } from "next/navigation";
+import prisma from "@/lib/prisma";
 
-function DesignsPage() {
-  const router = useRouter();
+const getAllProducts = async () => {
+  return await prisma.product.findMany();
+};
+
+async function ProductsPage() {
+  const products = await getAllProducts();
   return (
     <section className="container mx-auto pt-16">
       <h1 className="text-4xl font-bold text-center mt-8">All Designs</h1>
@@ -66,8 +69,8 @@ function DesignsPage() {
           </Select>
         </div>
       </div>
-      <div className="cards-wrapper flex flex-row flex-wrap items-center justify-center gap-10">
-        {ProductsData.map((product, index) => (
+      <div className="cards-wrapper grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        {products.map((product, index) => (
           <ItemCard key={index} product={product} />
         ))}
       </div>
@@ -75,4 +78,4 @@ function DesignsPage() {
   );
 }
 
-export default DesignsPage;
+export default ProductsPage;
