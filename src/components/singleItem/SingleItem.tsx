@@ -115,7 +115,14 @@ function SingleItem({ product }: SingleItemProps) {
             <Button onClick={() => setQuantity(quantity + 1)}>+</Button>
           </div>
         </div>
-        <AddToCartBtn />
+        <AddToCartBtn
+          input={{
+            productId: item.id,
+            coverSize: cover,
+            chipSize: chipSize,
+            quantity: quantity,
+          }}
+        />
       </div>
     </div>
   ) : (
