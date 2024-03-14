@@ -6,10 +6,10 @@ import { Link } from "lucide-react";
 function Footer() {
   return (
     <footer
-      className="footer container h-96 rounded-t-xl flex flex-col items-center justify-center py-4 relative"
+      className="footer container h-min-96 w-full rounded-t-xl flex flex-col items-center justify-center pt-8 pb-20 relative"
       style={{ backgroundColor: "#0C0C0C" }}
     >
-      <div className="content w-full grid grid-cols-5 text-neutral-50">
+      <div className="content w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 text-neutral-50">
         <div className="shop leading-10">
           <p className="title font-semibold text-3xl mb-4">Shop</p>
           <p className="font-medium">Design Your Own</p>
@@ -24,7 +24,7 @@ function Footer() {
           <p className="font-medium">How it works</p>
           <p className="font-medium">Contact Us</p>
         </div>
-        <div className="email-subscription col-span-2">
+        <div className="email-subscription col-span-2 mt-8 lg:mt-0">
           <p className="title font-semibold text-3xl mb-4">Never miss a deal</p>
           <p>
             Subscribe to our emailing list to receive notifications <br /> about
@@ -41,7 +41,7 @@ function Footer() {
             </Button>
           </div>
         </div>
-        <div className="logo flex flex-col items-center justify-start">
+        <div className="logo flex flex-col items-start md:items-center justify-start mt-8 lg:mt-0">
           <p className="text-9xl text-neutral-50 font-bold mb-0 lh">SK</p>
           <p
             className="text-9xl text-neutral-50 font-bold mb-0"

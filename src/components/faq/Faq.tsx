@@ -10,7 +10,7 @@ import faqsData from "../../../public/data/faqs.json";
 
 function Faq() {
   return (
-    <div className="faq">
+    <section className="faq container mx-auto my-16">
       <h1 className="font-bold text-4xl text-center mb-10">Faqs</h1>
       <Accordion type="single" collapsible className="w-full">
         {faqsData.map((faq, index) => (
@@ -20,7 +20,7 @@ function Faq() {
           </AccordionItem>
         ))}
       </Accordion>
-    </div>
+    </section>
   );
 }
 

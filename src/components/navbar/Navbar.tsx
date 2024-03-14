@@ -5,7 +5,7 @@ import { ShoppingCart, Search } from "lucide-react";
 
 function Navbar() {
   return (
-    <section className="d-flex justify-center align bg-center fixed w-screen top-0 z-50">
+    <section className="d-flex justify-center bg-center fixed w-screen top-0 z-50">
       <nav
         className="container mx-auto w-full h-16 flex items-center justify-between rounded-b-xl"
         style={{ backgroundColor: "#0C0C0C" }}
@@ -20,7 +20,7 @@ function Navbar() {
           </h1>
         </Link>
 
-        <div className="public-links flex gap-5">
+        {/* <div className="public-links flex gap-5">
           <Link href={"/products"} className="text-neutral-100">
             Shop
           </Link>
@@ -30,7 +30,7 @@ function Navbar() {
           <Link href={""} className="text-neutral-100">
             Contact
           </Link>
-        </div>
+        </div> */}
         <div className="user-links flex gap-3 items-center">
           <Link href={""} className="text-neutral-100">
             <Search size={20} color="background" />

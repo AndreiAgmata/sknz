@@ -1,6 +1,7 @@
 import Faq from "@/components/faq/Faq";
 import MoreLikeThis from "@/components/moreLikeThis/MoreLikeThis";
 import SingleItem from "@/components/singleItem/SingleItem";
+import prisma from "@/lib/prisma";
 
 interface request {
   params: {
@@ -8,14 +9,22 @@ interface request {
   };
 }
 
-function DesignsPage(req: request) {
+const getProductById = async (id: string) => {
+  const product = await prisma.product.findUnique({
+    where: { id: id },
+  });
+
+  return product;
+};
+
+async function DesignsPage(req: request) {
+  const product = await getProductById(req.params.id);
+
   return (
     <section className="container mx-auto">
-      <SingleItem />
+      <SingleItem product={product} />
       <MoreLikeThis id={req.params.id} />
-      <div className="my-32 w-full">
-        <Faq />
-      </div>
+      <Faq />
     </section>
   );
 }

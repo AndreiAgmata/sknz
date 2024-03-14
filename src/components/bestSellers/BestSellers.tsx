@@ -1,6 +1,8 @@
 import React from "react";
 import prisma from "@/lib/prisma";
 import ProductReel from "../productReel/ProductReel";
+import ViewAllBtn from "../viewAllBtn/ViewAllBtn";
+import DesignYourOwnBtn from "../designYourOwnBtn/DesignYourOwnBtn";
 
 const getBestSellers = async () => {
   const products = await prisma.product.findMany();
@@ -13,11 +15,15 @@ async function BestSellers() {
   const products = await getBestSellers();
   return (
     <section
-      className="container mx-auto flex flex-col items-center pt-20 mb-16"
+      className="container mx-auto flex flex-col items-center mb-16"
       id="best-sellers"
     >
       <h1 className="font-bold text-5xl text-center mb-10">Best Sellers</h1>
       <ProductReel products={products} />
+      <div className="buttons mt-8 flex gap-4">
+        <DesignYourOwnBtn />
+        <ViewAllBtn />
+      </div>
     </section>
   );
 }
