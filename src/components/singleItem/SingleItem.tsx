@@ -117,7 +117,7 @@ function SingleItem({ product }: SingleItemProps) {
         </div>
         <AddToCartBtn
           input={{
-            productId: item.id,
+            product: item,
             coverSize: cover,
             chipSize: chipSize,
             quantity: quantity,

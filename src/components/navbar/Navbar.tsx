@@ -35,7 +35,7 @@ function Navbar() {
           <Link href={""} className="text-neutral-100">
             <Search size={20} color="background" />
           </Link>
-          <Link href={""} className="text-neutral-100">
+          <Link href={"/cart"} className="text-neutral-100">
             <ShoppingCart size={20} color="background" />
           </Link>
           <Button variant={"secondary"}>Sign In</Button>

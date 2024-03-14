@@ -1,9 +1,10 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { Button } from "../ui/button";
+import { Product } from "@/lib/types";
 
 interface AddToCartInput {
-  productId: string;
+  product: Product;
   coverSize: number;
   chipSize: number;
   quantity: number;
@@ -11,7 +12,22 @@ interface AddToCartInput {
 
 function AddToCartBtn({ input }: { input: AddToCartInput }) {
   const handleAddToCart = async () => {
-    console.log(input);
+    let duplicate = false;
+    if (typeof window !== "undefined") {
+      let cart: AddToCartInput[] = JSON.parse(
+        localStorage.getItem("cart") || "[]"
+      );
+
+      cart.forEach((item) => {
+        if (item.product.id === input.product.id) {
+          item.quantity += input.quantity;
+          duplicate = true;
+        }
+      });
+
+      !duplicate && cart.push(input);
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
   };
 
   return (
