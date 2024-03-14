@@ -8,7 +8,7 @@ const getSimilarProducts = async (id: string) => {
   });
 
   const products = await prisma.product.findMany({
-    where: { categoryId: product?.categoryId },
+    where: { categoryId: product?.categoryId, id: { not: product?.id } },
   });
 
   return products.slice(0, 4);
