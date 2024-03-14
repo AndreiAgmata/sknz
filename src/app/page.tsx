@@ -1,4 +1,4 @@
-import BestSellers from "@/components/bestSellers/bestSellers";
+import BestSellers from "@/components/bestSellers/BestSellers";
 import Footer from "@/components/footer/Footer";
 import Hero from "@/components/hero/Hero";
 import Navbar from "@/components/navbar/Navbar";
