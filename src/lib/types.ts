@@ -7,3 +7,10 @@ export type Product = {
   rating: number;
   totalSales: number;
 };
+
+export type CartItem = {
+  product: Product;
+  coverSize: number;
+  chipSize: number;
+  quantity: number;
+};

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import { CartProvider } from "@/context/CartContext";
 
 const clashDisplay = localFont({
   src: [
@@ -44,7 +45,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={clashDisplay.className}>{children}</body>
+      <body className={clashDisplay.className}>
+        <CartProvider>{children}</CartProvider>
+      </body>
     </html>
   );
 }

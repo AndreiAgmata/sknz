@@ -23,7 +23,6 @@ function ItemCard({ product }: ItemCardProps) {
       className="hover:bg-neutral-200 flex flex-col items-start py-4 px-4"
       onClick={() => {
         router.push(`/products/${product.id}`);
-        localStorage.setItem("item", JSON.stringify(product));
       }}
     >
       <CardContent className="self-center w-full h-auto flex justify-center items-start image-wrapper relative aspect-[1.58/1]">
