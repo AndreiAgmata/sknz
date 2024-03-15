@@ -4,6 +4,8 @@ import { CartItem, Product } from "@/lib/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
+import "./CartItem.css";
+import { Button } from "../ui/button";
 
 interface CartItemProps {
   product: CartItem;
@@ -18,8 +20,8 @@ function CartItem({ product, index }: CartItemProps) {
   }
   return (
     <div className="cart-item grid grid-cols-11">
-      <div className="col-span-4 flex flex-row gap-4">
-        <div className="image-wrapper w-32 h-auto aspect-[1.58/1] relative border rounded-lg overflow-hidden">
+      <div className="col-span-2 flex flex-row gap-4 pe-4">
+        <div className="image-wrapper w-full h-auto relative aspect-[1.58/1] border  rounded-lg overflow-hidden">
           <Image
             src={product.product.image}
             alt="item image"
@@ -28,26 +30,30 @@ function CartItem({ product, index }: CartItemProps) {
             onClick={() => router.push(`/products/${product.product.id}`)}
           />
         </div>
-        <div className="details col-span-2">
-          <p className="text-xl font-semibold">{product.product.name}</p>
-          <p className="text-xs">
-            Cover Size : {product.coverSize === 1 ? "Full Cover" : "Half Cover"}
-          </p>
-          <p className="text-xs">
-            Chip Size :{" "}
-            {product.chipSize === 1
-              ? "Big Chip"
-              : product.chipSize === 2
-              ? "Small Chip"
-              : "No Chip"}
-          </p>
-        </div>
+      </div>
+      <div className="details col-span-2">
+        <p className="text-md font-semibold">{product.product.name}</p>
+        <p className="text-xs">
+          Cover Size : {product.coverSize === 1 ? "Full Cover" : "Half Cover"}
+        </p>
+        <p className="text-xs">
+          Chip Size :{" "}
+          {product.chipSize === 1
+            ? "Big Chip"
+            : product.chipSize === 2
+            ? "Small Chip"
+            : "No Chip"}
+        </p>
       </div>
       <div className="col-span-2">
         <p>${product.product.price}</p>
       </div>
-      <div className="col-span-2">
-        <p>{product.quantity}</p>
+      <div className="col-span-2 flex items-center quantity">
+        <Button variant={"outline"} size={"sm"}>
+          -
+        </Button>
+        <p className="w-10 text-center">{product.quantity}</p>
+        <Button size={"sm"}>+</Button>
       </div>
       <div className="text-lg font-medium col-span-2">
         ${product.product.price * product.quantity}

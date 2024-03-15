@@ -23,7 +23,7 @@ interface DisplayOptions {
 }
 
 function CheckOutForm({ options }: { options: DisplayOptions }) {
-  const [shippingFee, setShippingFee] = useState(4.99);
+  const [shippingFee, setShippingFee] = useState(0.0);
   const { cartItems } = useCartContext();
 
   const calculateSubtotal = () => {
@@ -48,10 +48,10 @@ function CheckOutForm({ options }: { options: DisplayOptions }) {
   };
 
   return (
-    <div className="w-96 p-6 border rounded-xl">
+    <div className="w-full xl:w-96 p-6 mb-5 border rounded-xl grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-6">
       {options.calculateShipping && (
         <div className="calculate-shipping pb-4 border-b-2">
-          <p className="text-xl font-bold">Calculated Shipping</p>
+          <p className="text-xl font-bold">Estimate Shipping</p>
           <div className="row flex gap-4 mt-4">
             <Select>
               <SelectTrigger>
@@ -70,7 +70,7 @@ function CheckOutForm({ options }: { options: DisplayOptions }) {
             <Input type="text" placeholder="Postal Code" />
           </div>
           <p className="shipping-fee text-lg font-medium mt-4">
-            ${shippingFee}
+            {shippingFee === 0 ? "$0.00" : `$${shippingFee}`}
           </p>
           <Button type="button" className="mt-4 w-full">
             Update
@@ -78,47 +78,50 @@ function CheckOutForm({ options }: { options: DisplayOptions }) {
         </div>
       )}
       {options.couponCode && (
-        <div className="coupon-code my-4 pb-4 border-b-2 ">
+        <div className="coupon-code pb-4 border-b-2 flex flex-col items-start">
           <p className="text-xl font-bold">Coupon Code</p>
           <p style={{ fontSize: "0.65rem" }}>
             Offer valid for a limited time only. Cannot be combined with any
             other promotions or discounts.
           </p>
-          <Input type="text" placeholder="Coupon Code" className="mt-4" />
-          <Button type="button" className="mt-4 w-full">
+          <Input type="text" placeholder="Coupon Code" className="my-4" />
+          <Button type="button" className="mt-auto w-full ">
             Apply
           </Button>
         </div>
       )}
-      <div className="cart-total p-4 rounded-lg bg-gray-100 ">
-        <p className="text-xl font-bold">Cart Total</p>
-        <div className="row flex justify-between text-sm">
-          <p>Cart Subtotal : </p>
-          <p>${calculateSubtotal()}</p>
+      <div className="dummy-col"></div>
+      <div className="cart-total xl:ms-none">
+        <div className="inner p-4 bg-gray-100 rounded-lg">
+          <p className="text-xl font-bold">Cart Total</p>
+          <div className="row flex justify-between text-sm">
+            <p>Cart Subtotal : </p>
+            <p>${calculateSubtotal()}</p>
+          </div>
+          <div className="row flex justify-between text-sm ">
+            <p>Discount : </p>
+            <p>$0.00</p>
+          </div>
+          <div className="row flex justify-between text-sm ">
+            <p>Shipping : </p>
+            <p>{shippingFee === 0 ? "$0.00" : `$${shippingFee}`}</p>
+          </div>
+          <div className="row flex justify-between text-sm ">
+            <p>Hst : </p>
+            <p>${calculateTax()}</p>
+          </div>
+          <div className="total flex justify-between mt-4">
+            <p className="font-medium">Total :</p>
+            <p>${calculateTotal()}</p>
+          </div>
         </div>
-        <div className="row flex justify-between text-sm ">
-          <p>Discount : </p>
-          <p>$0.00</p>
-        </div>
-        <div className="row flex justify-between text-sm ">
-          <p>Shipping : </p>
-          <p>${shippingFee}</p>
-        </div>
-        <div className="row flex justify-between text-sm ">
-          <p>Hst : </p>
-          <p>${calculateTax()}</p>
-        </div>
-        <div className="total flex justify-between mt-4">
-          <p className="font-medium">Total :</p>
-          <p>${calculateTotal()}</p>
-        </div>
+        <Button type="button" className="mt-4 w-full" variant={"outline"}>
+          Continue Shopping
+        </Button>
+        <Button type="button" className="mt-4 w-full">
+          Proceed To Checkout
+        </Button>
       </div>
-      <Button type="button" className="mt-4 w-full" variant={"outline"}>
-        Continue Shopping
-      </Button>
-      <Button type="button" className="mt-4 w-full">
-        Proceed To Checkout
-      </Button>
     </div>
   );
 }

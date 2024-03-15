@@ -23,23 +23,33 @@ import DrawerCheckoutForm from "../drawerCheckoutForm/DrawerCheckoutForm";
 function AddToCartBtn({ input }: { input: CartItem }) {
   const { addToCart } = useCartContext();
   return (
-    <Drawer>
-      <DrawerTrigger asChild>
-        <Button
-          className="mt-8 w-full md:w-80 py-6 "
-          onClick={() => addToCart(input)}
-        >
-          Add To Cart
-        </Button>
-      </DrawerTrigger>
-      <DrawerContent className="px-5 h-5/6">
-        <h1 className="text-3xl font-semibold mb-4">Shopping Cart</h1>
-        <div className="flex gap-6 h-5/6 items-start">
-          <Cart />
-          <DrawerCheckoutForm />
-        </div>
-      </DrawerContent>
-    </Drawer>
+    <div className="w-full">
+      <Button
+        className="mt-8 w-full md:w-80 block sm:hidden"
+        onClick={() => addToCart(input)}
+      >
+        Add To Cart
+      </Button>
+      <div className="hidden sm:block">
+        <Drawer>
+          <DrawerTrigger asChild>
+            <Button
+              className="mt-8 w-full md:w-80 py-6 "
+              onClick={() => addToCart(input)}
+            >
+              Add To Cart
+            </Button>
+          </DrawerTrigger>
+          <DrawerContent className="px-5 h-5/6">
+            <h1 className="text-3xl font-semibold mb-4">Shopping Cart</h1>
+            <div className="flex gap-6 h-5/6 items-start">
+              <Cart />
+              <DrawerCheckoutForm />
+            </div>
+          </DrawerContent>
+        </Drawer>
+      </div>
+    </div>
   );
 }
 

@@ -25,17 +25,15 @@ function ItemCard({ product }: ItemCardProps) {
         router.push(`/products/${product.id}`);
       }}
     >
-      <CardContent className="self-center w-full h-auto flex justify-center items-start image-wrapper relative aspect-[1.58/1]">
-        <div className="">
-          <Image
-            src={product.image}
-            alt="product-image"
-            fill
-            sizes="100vh"
-            style={{ objectFit: "cover" }}
-            className="rounded-xl border"
-          />
-        </div>
+      <CardContent className="w-full h-auto image-wrapper relative aspect-[1.58/1]">
+        <Image
+          src={product.image}
+          alt="product-image"
+          fill
+          sizes="100vh"
+          style={{ objectFit: "cover" }}
+          className="rounded-xl border"
+        />
       </CardContent>
       <CardFooter className="flex flex-col justify-start items-start p-0 py-4">
         <p className="text-xl font-semibold text-wrap">{product.name}</p>

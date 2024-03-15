@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import CartItem from "../cartItem/CartItem";
 import { Product } from "@/lib/types";
 import { CartProvider, useCartContext } from "@/context/CartContext";
+import "./Cart.css";
 
 interface CartItemProps {
   product: Product;
