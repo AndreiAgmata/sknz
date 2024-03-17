@@ -12,6 +12,8 @@ interface CartContextType {
   cartItems: CartItem[];
   addToCart: (cartItem: CartItem) => void;
   removeFromCart: (index: number) => void;
+  increaseQuantity: (index: number) => void;
+  decreaseQuantity: (index: number) => void;
   clearCart: () => void;
 }
 
@@ -56,6 +58,20 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCart));
   };
 
+  const increaseQuantity = (index: number) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems[index].quantity += 1;
+    setCartItems(updatedCartItems);
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCartItems));
+  };
+
+  const decreaseQuantity = (index: number) => {
+    const updatedCartItems = [...cartItems];
+    updatedCartItems[index].quantity -= 1;
+    setCartItems(updatedCartItems);
+    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCartItems));
+  };
+
   const clearCart = () => {
     setCartItems([]);
   };
@@ -66,6 +82,8 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         cartItems,
         addToCart,
         removeFromCart,
+        increaseQuantity,
+        decreaseQuantity,
         clearCart,
       }}
     >

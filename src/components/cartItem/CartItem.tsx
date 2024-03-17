@@ -4,7 +4,6 @@ import { CartItem, Product } from "@/lib/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import "./CartItem.css";
 import { Button } from "../ui/button";
 
 interface CartItemProps {
@@ -14,12 +13,13 @@ interface CartItemProps {
 
 function CartItem({ product, index }: CartItemProps) {
   const router = useRouter();
-  const { removeFromCart } = useCartContext();
+  const { removeFromCart, increaseQuantity, decreaseQuantity } =
+    useCartContext();
   if (!product) {
     return <>Loading</>;
   }
   return (
-    <div className="cart-item grid grid-cols-11">
+    <div className="cart-item grid grid-cols-4 lg:grid-cols-11 gap-4">
       <div className="col-span-2 flex flex-row gap-4 pe-4">
         <div className="image-wrapper w-full h-auto relative aspect-[1.58/1] border  rounded-lg overflow-hidden">
           <Image
@@ -49,11 +49,18 @@ function CartItem({ product, index }: CartItemProps) {
         <p>${product.product.price}</p>
       </div>
       <div className="col-span-2 flex items-center quantity">
-        <Button variant={"outline"} size={"sm"}>
+        <Button
+          variant={"outline"}
+          size={"sm"}
+          onClick={() => decreaseQuantity(index)}
+          disabled={product.quantity === 1}
+        >
           -
         </Button>
         <p className="w-10 text-center">{product.quantity}</p>
-        <Button size={"sm"}>+</Button>
+        <Button size={"sm"} onClick={() => increaseQuantity(index)}>
+          +
+        </Button>
       </div>
       <div className="text-lg font-medium col-span-2">
         ${product.product.price * product.quantity}

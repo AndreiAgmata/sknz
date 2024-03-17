@@ -1,22 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import CartItem from "../cartItem/CartItem";
-import { Product } from "@/lib/types";
 import { CartProvider, useCartContext } from "@/context/CartContext";
-import "./Cart.css";
-
-interface CartItemProps {
-  product: Product;
-  coverSize: number;
-  chipSize: number;
-  quantity: number;
-}
 
 function Cart() {
   const { cartItems } = useCartContext();
   return (
     <div className="cart-items flex flex-col gap-8 p-6 border rounded-2xl w-full h-full">
-      <div className="headers grid grid-cols-11 font-bold text-xl">
+      <div className="headers hidden lg:grid grid-cols-11 font-bold text-xl">
         <p className="col-span-4">Product</p>
         <p className="col-span-2">Price</p>
         <p className="col-span-2">Quantity</p>
