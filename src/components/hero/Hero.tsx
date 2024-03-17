@@ -16,14 +16,10 @@ function Hero() {
           overflow: "hidden",
         }}
       >
-        <div className="tag-line">
-          <h1 className="text-white font-medium text-9xl text-center">
-            START SWIPING
-          </h1>
-          <h1 className="text-white font-medium text-9xl text-center">
-            WITH STYLE
-          </h1>
-          <h1 className="text-white font-medium text-9xl text-center">TODAY</h1>
+        <div className="tag-line text-9xl">
+          <h1 className="text-white font-medium  text-center">START SWIPING</h1>
+          <h1 className="text-white font-medium  text-center">WITH STYLE</h1>
+          <h1 className="text-white font-medium  text-center">TODAY</h1>
         </div>
         <div
           className="cards-wrapper"

@@ -17,12 +17,7 @@ import { CartItem, Product } from "@/lib/types";
 import { DrawerClose } from "../ui/drawer";
 import { useCartContext } from "@/context/CartContext";
 
-interface DisplayOptions {
-  calculateShipping: boolean;
-  couponCode: boolean;
-}
-
-function CheckOutForm({ options }: { options: DisplayOptions }) {
+function CheckOutForm() {
   const [shippingFee, setShippingFee] = useState(0.0);
   const { cartItems } = useCartContext();
 
@@ -47,49 +42,51 @@ function CheckOutForm({ options }: { options: DisplayOptions }) {
     return (subtotal + shippingFee + tax).toFixed(2);
   };
 
-  return (
+  return cartItems.length !== 0 ? (
     <div className="w-full xl:w-96 p-6 mb-5 border rounded-xl grid grid-cols-1 md:grid-cols-2 xl:grid-cols-1 gap-6">
-      {options.calculateShipping && (
-        <div className="calculate-shipping pb-4 border-b-2">
-          <p className="text-xl font-bold">Estimate Shipping</p>
-          <div className="row flex gap-4 mt-4">
-            <Select>
-              <SelectTrigger>
-                <SelectValue placeholder="Province" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {provinces.map((province, index) => (
-                    <SelectItem value={province.name} key={index}>
-                      {province.name}
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-            <Input type="text" placeholder="Postal Code" />
-          </div>
-          <p className="shipping-fee text-lg font-medium mt-4">
-            {shippingFee === 0 ? "$0.00" : `$${shippingFee}`}
-          </p>
-          <Button type="button" className="mt-4 w-full">
-            Update
-          </Button>
+      <div className="calculate-shipping pb-4 border-b-2">
+        <p className="text-xl font-bold">Estimate Shipping</p>
+        <div className="row flex gap-4 mt-4">
+          <Select>
+            <SelectTrigger>
+              <SelectValue placeholder="Province" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                {provinces.map((province, index) => (
+                  <SelectItem value={province.name} key={index}>
+                    {province.name}
+                  </SelectItem>
+                ))}
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+          <Input type="text" placeholder="Postal Code" />
         </div>
-      )}
-      {options.couponCode && (
-        <div className="coupon-code pb-4 border-b-2 flex flex-col items-start">
-          <p className="text-xl font-bold">Coupon Code</p>
-          <p style={{ fontSize: "0.65rem" }}>
-            Offer valid for a limited time only. Cannot be combined with any
-            other promotions or discounts.
-          </p>
-          <Input type="text" placeholder="Coupon Code" className="my-4" />
-          <Button type="button" className="mt-auto w-full ">
-            Apply
-          </Button>
-        </div>
-      )}
+        <p className="shipping-fee text-lg font-medium mt-4">
+          {shippingFee === 0 ? "$0.00" : `$${shippingFee}`}
+        </p>
+        <Button
+          type="button"
+          className="mt-4 w-full"
+          onClick={() => setShippingFee(4.99)}
+        >
+          Update
+        </Button>
+      </div>
+
+      <div className="coupon-code pb-4 border-b-2 flex flex-col items-start">
+        <p className="text-xl font-bold">Coupon Code</p>
+        <p style={{ fontSize: "0.65rem" }}>
+          Offer valid for a limited time only. Cannot be combined with any other
+          promotions or discounts.
+        </p>
+        <Input type="text" placeholder="Coupon Code" className="my-4" />
+        <Button type="button" className="mt-auto w-full ">
+          Apply
+        </Button>
+      </div>
+
       <div className="dummy-col"></div>
       <div className="cart-total xl:ms-none">
         <div className="inner p-4 bg-gray-100 rounded-lg">
@@ -123,6 +120,8 @@ function CheckOutForm({ options }: { options: DisplayOptions }) {
         </Button>
       </div>
     </div>
+  ) : (
+    <></>
   );
 }
 

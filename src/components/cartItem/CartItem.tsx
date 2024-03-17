@@ -63,7 +63,7 @@ function CartItem({ product, index }: CartItemProps) {
         </Button>
       </div>
       <div className="text-lg font-medium col-span-2">
-        ${product.product.price * product.quantity}
+        ${(product.product.price * product.quantity).toFixed(2)}
       </div>
       <div className="cursor-pointer" onClick={() => removeFromCart(index)}>
         <p>Remove</p>
