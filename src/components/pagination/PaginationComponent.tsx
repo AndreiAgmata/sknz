@@ -17,11 +17,13 @@ function PaginationComponent({
   per_page,
   page,
   filter,
+  sortBy,
 }: {
   totalItems: number;
   page: string;
   per_page: string;
   filter: string;
+  sortBy: string;
 }) {
   const router = useRouter();
   return (
@@ -35,7 +37,7 @@ function PaginationComponent({
                   router.push(
                     `/products?page=${
                       Number(page) - 1
-                    }&per_page=${per_page}&filter=${filter}`
+                    }&per_page=${per_page}&filter=${filter}&sortBy=${sortBy}`
                   )
                 }
               />
@@ -48,7 +50,7 @@ function PaginationComponent({
                 router.push(
                   `/products?page=${Number(
                     page
-                  )}&per_page=${per_page}&filter=${filter}`
+                  )}&per_page=${per_page}&filter=${filter}&sortBy=${sortBy}`
                 )
               }
             >
@@ -63,7 +65,7 @@ function PaginationComponent({
                   router.push(
                     `/products?page=${
                       Number(page) + 1
-                    }&per_page=${per_page}&filter=${filter}`
+                    }&per_page=${per_page}&filter=${filter}&sortBy=${sortBy}`
                   )
                 }
               >
@@ -80,7 +82,7 @@ function PaginationComponent({
                   router.push(
                     `/products?page=${
                       Number(page) + 2
-                    }&per_page=${per_page}&filter=${filter}`
+                    }&per_page=${per_page}&filter=${filter}&sortBy=${sortBy}`
                   )
                 }
               >
@@ -95,7 +97,7 @@ function PaginationComponent({
                   router.push(
                     `/products?page=${
                       Number(page) + 3
-                    }&per_page=${per_page}&filter=${filter}`
+                    }&per_page=${per_page}&filter=${filter}&sortBy=${sortBy}`
                   )
                 }
               />
@@ -108,7 +110,7 @@ function PaginationComponent({
                   router.push(
                     `/products?page=${
                       Number(page) + 1
-                    }&per_page=${per_page}&filter=${filter}`
+                    }&per_page=${per_page}&filter=${filter}&sortBy=${sortBy}`
                   )
                 }
               />

@@ -9,7 +9,11 @@ function ViewAllBtn() {
     <Button
       type="button"
       size={"lg"}
-      onClick={() => router.push("/products?page=1&per_page=12&filter=all")}
+      onClick={() =>
+        router.push(
+          "/products?page=1&per_page=12&filter=all&sortBy=bestSellers"
+        )
+      }
     >
       View All Products
     </Button>
