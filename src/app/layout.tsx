@@ -35,7 +35,7 @@ const clashDisplay = localFont({
 export const metadata: Metadata = {
   title: "SKNZ - Swipe In Style",
   description:
-    "Transforming Your Cards, Elevating Your Style: SKNZ - Where Every Swipe Reflects Your Personality.",
+    "Transforming Your Cards, Elevating Your Style: SKNZ - Where Every Swipe Reflects Your Personality",
 };
 
 export default function RootLayout({
