@@ -1,10 +1,13 @@
+"use client";
 import React from "react";
 import Image from "next/image";
 import cards from "../../../public/hero-images/cards.png";
 import Link from "next/link";
 import { Button } from "../ui/button";
+import { useRouter } from "next/navigation";
 
 function Hero() {
+  const router = useRouter();
   return (
     <section className="mx-auto w-screen flex flex-col items-center">
       <div
@@ -43,7 +46,16 @@ function Hero() {
         />
       </a>
       <div className="buttons flex flex-col items-center justify-center gap-8 mt-16 px-8 w-full md:hidden">
-        <Button type="button" size={"lg"} className="text-lg w-full">
+        <Button
+          type="button"
+          size={"lg"}
+          className="text-lg w-full"
+          onClick={() =>
+            router.push(
+              "/products?page=1&per_page=12&filter=all&sortBy=bestSellers"
+            )
+          }
+        >
           Shop Now
         </Button>
         <Button

@@ -213,17 +213,19 @@ async function ProductsPage({
   return (
     <section className="container mx-auto pt-24">
       <h1 className="text-4xl font-bold text-center mt-8">All Designs</h1>
-      <div className="header py-4 flex flex-row justify-between">
+      <div className="header py-4 flex flex-col md:flex-row justify-between gap-4">
         <div className="filters flex flex-row items-center gap-4">
           <Filters filter={filter} />
         </div>
-        <div className="sortBy flex flex-row gap-2 items-center">
+        <div className="sortBy flex flex-col-reverse md:flex-row gap-4 md:items-center">
           <p>
             Displaying {perPage} of {productsCount} Item(s)
           </p>
-          <p>|</p>
-          <p>Sort By</p>
-          <SortBy filter={filter} sortBy={sortBy} />
+          <p className="hidden md:block">|</p>
+          <div className="sort-by flex flex-row items-center gap-2">
+            <p>Sort By: </p>
+            <SortBy filter={filter} sortBy={sortBy} />
+          </div>
         </div>
       </div>
       <div className="cards-wrapper grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
