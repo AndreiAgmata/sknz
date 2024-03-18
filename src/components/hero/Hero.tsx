@@ -2,41 +2,34 @@ import React from "react";
 import Image from "next/image";
 import cards from "../../../public/hero-images/cards.png";
 import Link from "next/link";
+import { Button } from "../ui/button";
 
 function Hero() {
   return (
-    <section className="mx-auto w-screen h-dvh flex flex-col items-center">
+    <section className="mx-auto w-screen flex flex-col items-center">
       <div
-        className="w-full flex flex-col relative container pt-16"
+        className="w-full h-[30rem] sm:h-[45rem] md:h-[55rem] flex flex-col items-center relative container pt-24 overflow-hidden rounded-b-[4rem] md:rounded-b-[7rem] px-4"
         style={{
-          borderBottomRightRadius: "7rem",
-          borderBottomLeftRadius: "7rem",
           backgroundColor: "#0c0c0c",
-          height: "85%",
-          overflow: "hidden",
         }}
       >
-        <div className="tag-line text-9xl">
+        <div className="tag-line text-6xl sm:text-8xl md:text-9xl">
           <h1 className="text-white font-medium  text-center">START SWIPING</h1>
           <h1 className="text-white font-medium  text-center">WITH STYLE</h1>
           <h1 className="text-white font-medium  text-center">TODAY</h1>
         </div>
-        <div
-          className="cards-wrapper"
-          style={{
-            marginTop: "-3.5rem",
-          }}
-        >
+        <div className="cards-wrapper absolute w-11/12 h-full bottom-[-11.5rem] sm:bottom-[-20rem]">
           <Image
             src={cards}
             alt="cards-hero-image"
-            sizes="100vw"
+            fill
             unoptimized={true}
+            style={{ objectFit: "contain" }}
           />
         </div>
       </div>
       <a
-        className="call-to-action z-10 h-40 w-40 self-center flex flex-col justify-center items-center rounded-full border-8 border-background gap-3"
+        className="call-to-action z-10 h-40 w-40 self-center hidden md:flex flex-col justify-center items-center rounded-full border-8 border-background gap-3"
         style={{ backgroundColor: "#0c0c0c", marginTop: "-4rem" }}
         href={"#best-sellers"}
       >
@@ -49,6 +42,19 @@ function Hero() {
           alt="arrow-down"
         />
       </a>
+      <div className="buttons flex flex-col items-center justify-center gap-8 mt-16 px-8 w-full md:hidden">
+        <Button type="button" size={"lg"} className="text-lg w-full">
+          Shop Now
+        </Button>
+        <Button
+          type="button"
+          size={"lg"}
+          variant={"outline"}
+          className="text-lg w-full"
+        >
+          Design Your Own
+        </Button>
+      </div>
     </section>
   );
 }

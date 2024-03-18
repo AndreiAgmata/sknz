@@ -23,7 +23,7 @@ async function DesignsPage(req: request) {
   return (
     <section className="container mx-auto">
       <SingleItem product={product} />
-      {/* <MoreLikeThis id={req.params.id} /> */}
+      <MoreLikeThis id={req.params.id} />
       <Faq />
     </section>
   );

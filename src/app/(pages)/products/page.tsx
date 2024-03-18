@@ -1,72 +1,96 @@
 import React from "react";
-import ProductsData from "../../../../public/data/data.json";
 import ItemCard from "@/components/itemCard/ItemCard";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import prisma from "@/lib/prisma";
+import PaginationComponent from "@/components/pagination/PaginationComponent";
+import Filters from "@/components/filters/Filters";
+import SortBy from "@/components/sortBy/SortBy";
 
-const getAllProducts = async () => {
-  return await prisma.product.findMany();
+const getAllProducts = async ({
+  page,
+  perPage,
+  filter,
+}: {
+  page: string;
+  perPage: string;
+  filter: string;
+}) => {
+  const skip = (parseInt(page, 10) - 1) * parseInt(perPage, 10);
+  switch (filter) {
+    case "sports":
+      return await prisma.product.findMany({
+        where: { categoryId: String(1) },
+        skip,
+        take: parseInt(perPage, 10),
+      });
+    case "streetwear":
+      return await prisma.product.findMany({
+        where: { categoryId: String(2) },
+        skip,
+        take: parseInt(perPage, 10),
+      });
+    case "automotive":
+      return await prisma.product.findMany({
+        where: { categoryId: String(3) },
+        skip,
+        take: parseInt(perPage, 10),
+      });
+    default:
+      return await prisma.product.findMany({
+        skip,
+        take: parseInt(perPage, 10),
+      });
+  }
 };
 
-async function ProductsPage() {
-  const products = await getAllProducts();
+const getAllProductsCount = async (filter: string) => {
+  switch (filter) {
+    case "sports":
+      return await prisma.product.count({
+        where: {
+          categoryId: "1",
+        },
+      });
+    case "streetwear":
+      return await prisma.product.count({
+        where: {
+          categoryId: "2",
+        },
+      });
+    case "automotive":
+      return await prisma.product.count({
+        where: {
+          categoryId: "3",
+        },
+      });
+    default:
+      return await prisma.product.count();
+  }
+};
+
+async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: { [key: string]: string | undefined };
+}) {
+  const page = searchParams["page"] ?? "1";
+  const perPage = searchParams["per_page"] ?? "12";
+  const filter = searchParams["filter"] ?? "all";
+  const products = await getAllProducts({ page, perPage, filter });
+  const productsCount = await getAllProductsCount(filter);
   return (
-    <section className="container mx-auto pt-16">
+    <section className="container mx-auto pt-24">
       <h1 className="text-4xl font-bold text-center mt-8">All Designs</h1>
       <div className="header py-4 flex flex-row justify-between">
         <div className="filters flex flex-row items-center gap-4">
-          <DropdownMenu modal={false}>
-            <DropdownMenuTrigger>Filters</DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Categories</DropdownMenuLabel>
-              <DropdownMenuItem>Sports</DropdownMenuItem>
-              <DropdownMenuItem>Designers</DropdownMenuItem>
-              <DropdownMenuItem>Automotive</DropdownMenuItem>
-              <DropdownMenuSeparator />
-              <DropdownMenuLabel>Colors</DropdownMenuLabel>
-              <DropdownMenuItem>Black</DropdownMenuItem>
-              <DropdownMenuItem>White</DropdownMenuItem>
-              <DropdownMenuItem>Red</DropdownMenuItem>
-              <DropdownMenuItem>Blue</DropdownMenuItem>
-              <DropdownMenuItem>Multi Color</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Filters />
         </div>
         <div className="sortBy flex flex-row gap-2 items-center">
-          <p>{ProductsData.length} Item(s)</p>
+          <p>
+            Displaying {perPage} of {productsCount} Item(s)
+          </p>
           <p>|</p>
           <p>Sort By</p>
-          <Select>
-            <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Best Sellers" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="featured">Best Sellers</SelectItem>
-                <SelectItem value="lowToHigh">Price, low to high</SelectItem>
-                <SelectItem value="highToLow">Price, high to Low</SelectItem>
-                <SelectItem value="aToZ">Alphabetically, A to Z</SelectItem>
-                <SelectItem value="zToA">Alphabetically, Z to A</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <SortBy />
         </div>
       </div>
       <div className="cards-wrapper grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
@@ -74,6 +98,12 @@ async function ProductsPage() {
           <ItemCard key={index} product={product} />
         ))}
       </div>
+      <PaginationComponent
+        totalItems={productsCount}
+        page={`${page}`}
+        per_page={`${perPage}`}
+        filter={filter}
+      />
     </section>
   );
 }

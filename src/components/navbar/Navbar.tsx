@@ -1,13 +1,14 @@
 import Link from "next/link";
 import React from "react";
 import { Button } from "../ui/button";
-import { ShoppingCart, Search } from "lucide-react";
+import { Search } from "lucide-react";
+import CartBtn from "../cartBtn/CartBtn";
 
 function Navbar() {
   return (
     <section className="d-flex justify-center bg-center fixed w-screen top-0 z-50">
       <nav
-        className="container mx-auto w-full h-16 flex items-center justify-between rounded-b-xl"
+        className="container mx-auto w-full h-20 flex items-center justify-between rounded-b-xl"
         style={{ backgroundColor: "#0C0C0C" }}
       >
         <Link href={"/"} className="flex flex-col gap-0">
@@ -20,24 +21,11 @@ function Navbar() {
           </h1>
         </Link>
 
-        {/* <div className="public-links flex gap-5">
-          <Link href={"/products"} className="text-neutral-100">
-            Shop
-          </Link>
+        <div className="user-links flex gap-5 items-center">
           <Link href={""} className="text-neutral-100">
-            About
+            <Search size={25} color="background" />
           </Link>
-          <Link href={""} className="text-neutral-100">
-            Contact
-          </Link>
-        </div> */}
-        <div className="user-links flex gap-3 items-center">
-          <Link href={""} className="text-neutral-100">
-            <Search size={20} color="background" />
-          </Link>
-          <Link href={"/cart"} className="text-neutral-100">
-            <ShoppingCart size={20} color="background" />
-          </Link>
+          <CartBtn />
           <Button variant={"secondary"}>Sign In</Button>
         </div>
       </nav>

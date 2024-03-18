@@ -15,7 +15,7 @@ async function BestSellers() {
   const products = await getBestSellers();
   return (
     <section
-      className="container mx-auto flex flex-col items-center mb-16"
+      className="container mx-auto flex flex-col items-center my-16"
       id="best-sellers"
     >
       <h1 className="font-bold text-5xl text-center mb-10">Best Sellers</h1>
@@ -29,14 +29,3 @@ async function BestSellers() {
 }
 
 export default BestSellers;
-
-{
-  /* <div className="button-group flex gap-3">
-    <Button size={"lg"} variant={"outline"}>
-      Design Your Own
-    </Button>
-    <Button size={"lg"} onClick={() => router.push("/products")}>
-      See More Designs
-    </Button>
-  </div> */
-}
