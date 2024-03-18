@@ -93,7 +93,7 @@ async function ProductsPage({
           <SortBy />
         </div>
       </div>
-      <div className="cards-wrapper grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+      <div className="cards-wrapper grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
         {products.map((product, index) => (
           <ItemCard key={index} product={product} />
         ))}

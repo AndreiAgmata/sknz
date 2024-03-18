@@ -7,7 +7,7 @@ interface productReelProps {
 
 async function ProductReel({ products }: productReelProps) {
   return (
-    <div className="items-wrapper w-full grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+    <div className="items-wrapper w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
       {products.map((product, index) => (
         <ItemCard key={index} product={product} />
       ))}
