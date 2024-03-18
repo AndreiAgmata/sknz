@@ -41,14 +41,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       ) {
         cartItem.quantity += item.quantity;
         duplicate = true;
+        localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
         break;
       }
     }
     if (!duplicate) {
-      setCartItems([...cartItems, item]);
+      const updatedCart = [...cartItems, item];
+      setCartItems(updatedCart);
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(updatedCart));
     }
-
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
   };
 
   const removeFromCart = (index: number) => {
