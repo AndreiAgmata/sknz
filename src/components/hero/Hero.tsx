@@ -11,7 +11,7 @@ function Hero() {
   return (
     <section className="mx-auto w-screen flex flex-col items-center">
       <div
-        className="w-full h-[30rem] sm:h-[45rem] md:h-[55rem] flex flex-col items-center relative container pt-24 overflow-hidden rounded-b-[4rem] md:rounded-b-[7rem] px-4"
+        className="w-full h-[30rem] sm:h-[45rem] md:h-[50rem] flex flex-col items-center relative container pt-24 overflow-hidden rounded-b-[4rem] md:rounded-b-[7rem] px-4"
         style={{
           backgroundColor: "#0c0c0c",
         }}
@@ -21,7 +21,7 @@ function Hero() {
           <h1 className="text-white font-medium  text-center">WITH STYLE</h1>
           <h1 className="text-white font-medium  text-center">TODAY</h1>
         </div>
-        <div className="cards-wrapper absolute w-11/12 h-full bottom-[-11.5rem] sm:bottom-[-20rem]">
+        <div className="cards-wrapper absolute w-11/12 h-full bottom-[-11.5rem] sm:bottom-[-20rem] md:bottom-[-22rem]">
           <Image
             src={cards}
             alt="cards-hero-image"

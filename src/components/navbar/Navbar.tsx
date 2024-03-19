@@ -22,9 +22,6 @@ function Navbar() {
         </Link>
 
         <div className="user-links flex gap-5 items-center">
-          <Link href={""} className="text-neutral-100">
-            <Search size={25} color="background" />
-          </Link>
           <CartBtn />
           <Button variant={"secondary"}>Sign In</Button>
         </div>
