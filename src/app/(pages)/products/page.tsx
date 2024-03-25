@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ItemCard from "@/components/itemCard/ItemCard";
 import prisma from "@/lib/prisma";
 import PaginationComponent from "@/components/pagination/PaginationComponent";
 import Filters from "@/components/filters/Filters";
 import SortBy from "@/components/sortBy/SortBy";
 import { Product } from "@/lib/types";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Card } from "@/components/ui/card";
 
 interface Category {
   id: string;
@@ -228,6 +230,7 @@ async function ProductsPage({
           </div>
         </div>
       </div>
+
       <div className="cards-wrapper grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
         {products ? (
           products.map((product, index) => (
@@ -237,6 +240,7 @@ async function ProductsPage({
           <></>
         )}
       </div>
+
       <PaginationComponent
         totalItems={productsCount}
         page={`${page}`}

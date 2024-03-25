@@ -10,6 +10,7 @@ interface request {
 }
 
 const getProductById = async (id: string) => {
+  // await new Promise((resolve) => setTimeout(resolve, 3000));
   const product = await prisma.product.findUnique({
     where: { id: id },
   });
