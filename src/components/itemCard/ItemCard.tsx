@@ -20,7 +20,7 @@ function ItemCard({ product }: ItemCardProps) {
   const router = useRouter();
   return (
     <Card
-      className="hover:bg-neutral-200 flex flex-col items-start py-4 px-4"
+      className="hover:bg-neutral-200 flex flex-col items-start py-4 px-4 cursor-pointer"
       onClick={() => {
         router.push(`/products/${product.id}`);
       }}
